@@ -1,0 +1,41 @@
+{
+  "name": "cily-web",
+  "version": "0.0.1",
+  "description": "Front-end for Cily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mudcrab/cily-web.git"
+  },
+  "author": "Jevgeni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mudcrab/cily-web/issues"
+  },
+  "homepage": "https://github.com/mudcrab/cily-web",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "bluebird": "^2.3.11",
+    "cinderblocks": "^1.0.1",
+    "gulp": "^3.8.8",
+    "gulp-concat": "~2.4.1",
+    "gulp-connect": "^2.0.5",
+    "gulp-declare": "~0.3.0",
+    "gulp-handlebars": "~3.0.1",
+    "gulp-jshint": "^1.8.5",
+    "gulp-sass": "^0.7.2",
+    "gulp-sourcemaps": "~1.2.2",
+    "gulp-uglifyjs": "~0.4.3",
+    "gulp-watch": "^1.1.0",
+    "gulp-wrap": "~0.3.0",
+    "handlebars": "^2.0.0",
+    "jquery": "^2.1.1",
+    "jquery.cookie": "^1.4.1",
+    "jshint-stylish": "^1.0.0",
+    "lodash": "^2.4.1",
+    "minivents": "^1.1.7"
+  }
+}
