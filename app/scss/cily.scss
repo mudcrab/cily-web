@@ -1,0 +1,255 @@
+@import "config";
+
+// FIXME move this to cinder
+
+@mixin mv($x, $y) {
+	-webkit-transform: translate3d($x, $y, 0);
+	-moz-transform: translate3d($x, $y, 0);
+	-o-transform: translate3d($x, $y, 0);
+	-ms-transform: translate3d($x, $y, 0);
+	transform: translate3d($x, $y, 0);
+}
+
+::-webkit-scrollbar{width: 6px;}
+
+::-webkit-scrollbar-thumb{background-color:rgb(0, 0, 0); border-radius: 0;}
+::-webkit-scrollbar-thumb:hover{background-color:rgba(0, 0, 0, .3);}
+
+::-webkit-scrollbar-track{background-color:rgb(31, 31, 31);}
+
+html, body, .full-container {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: rgba(#000, .8);
+	color: #f3f3f3;
+}
+
+.full-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	&.hide {
+		@include mv(-100%, 0px);
+		@include anim(transform, 200ms, ease-in);
+	}
+    
+    @include anim(transform, 200ms, ease-out);
+}
+
+.page-container {
+	width: 100%;
+	height: calc(100% - 54px);
+}
+
+.header, .main {
+	margin: auto;
+}
+
+// HEADER
+
+.header {
+	// padding: 10px 0;
+	line-height: 1;
+}
+
+.project-title {
+	font-size: em(18);
+	margin: 0;
+	padding: 12px 10px;
+	// line-height: 1;
+
+	.project-vcs-type {
+		display: none;
+		font-size: em(12);
+		border: 1px solid #f3f3f3;
+		padding: 1px 5px;
+		font-weight: 400;
+	}
+}
+
+ul.project-menu {
+	font-size: em(14);
+	font-weight: 700;
+}
+
+li.project-menu-item {
+	margin: 10px 5px;
+	padding: 5px 10px;
+	border-radius: 3px;
+
+	&.active, &:hover {
+		background: rgba(#000, .2);
+	}
+
+	&.build {
+		color: #c0392b;
+	}
+}
+
+// MAIN
+
+.overview-project-builds {
+	list-style: none;
+	margin: 0 10px;
+	padding: 0;
+}
+
+li.item {
+	cursor: pointer;
+	@include anim(background, 200ms, ease-out);
+
+	&:hover {
+		@include anim(background, 200ms, ease-in);
+	}
+
+	&:active {
+		@include anim(background, 300ms, ease-out);
+	}
+}
+
+li.overview-project-builds--item {
+	@include lineheight(40);
+	background: rgba(#000, .1);
+	border-radius: 3px;
+	margin: 5px 0;
+
+	&:hover {
+		background: rgba(#000, .2);
+	}
+
+	&:active {
+		box-shadow: 0 1px 7px rgba(#000, .1);
+	}
+
+	.commit {
+		padding: 0 10px;
+		font-size: em(12);
+		font-weight: 700;
+		// color: rgba(#fff, .3);
+	}
+
+	.datetime {
+		font-size: em(12);
+		padding: 0 10px;
+	}
+}
+
+.overview-project-builds--status {
+	width: 40px;
+	height: 40px;
+	border-radius: 3px;
+	text-align: center;
+
+	&.__success {
+		background: #2ecc71;
+
+		i {
+			&:before {
+				content: "\f00c";
+			}
+		}
+	}
+
+	&.__fail {
+		background: #c0392b;
+
+		i {
+			&:before {
+				content: "\f00d";
+			}
+		}
+	}
+}
+
+// OVERVIEW
+
+.overview-project-info {
+	list-style: none;
+	margin: 0 10px;
+	padding: 0;
+
+	.successful-builds {
+		color: #2ecc71;
+	}
+
+	.failed-builds {
+		color: #c0392b;
+	}
+}
+
+.overview-project-info--item {
+	margin: 10px 0;
+
+	&:first-of-type {
+		margin-top: 3px;
+	}
+
+	.label, .text {
+		margin: 0;
+		padding: 0;
+	}
+
+	.label {
+		font-size: em(12);
+	}
+
+	.text {
+		font-size: em(16);
+		font-weight: 700;
+	}
+}
+
+.overview-projects {
+	list-style: none;
+	margin: 10px;
+	padding: 0;
+}
+
+.overview-projects--item {
+	padding: 0 10px 0 0;
+	font-size: em(14);
+
+	a {
+		// width: 100%;
+	}
+
+	a, a:hover, a:active, a:visited { color: #fff; }
+}
+
+.overview-projects--type {
+	border-radius: 3px;
+	width: 40px;
+	background: rgba(#fff, .3);
+	text-align: center;
+	margin-right: 10px;
+	font-size: em(12);
+}
+
+.overview-projects--name {
+	margin-right: 10px;
+}
+
+.overview-projects-branch {
+	margin-left: 10px;
+}
+
+.main {
+	height: calc(100% - 55px);
+}
+
+.main .left-pane {
+	max-height: 100%;
+	overflow: auto;
+}
+
+// STUFF
+
+.menu-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
