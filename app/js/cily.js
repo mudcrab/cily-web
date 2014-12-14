@@ -1,5 +1,7 @@
 window.Cily = window.Cily || {};
 window.Cily.App = window.Cily.App || {};
+window.Cily.App.Data = window.Cily.App.Data || {};
+window.Cily.Views = window.Cily.Views || {};
 
 (function() {
 	'use strict';
@@ -9,6 +11,8 @@ window.Cily.App = window.Cily.App || {};
 		initialize: function()
 		{
 			Cily.Events = new Events();
+			this.header = this.header || new Cily.View.Header();
+			this.header.render();
 		},
 
 		routes:
@@ -16,28 +20,29 @@ window.Cily.App = window.Cily.App || {};
 			'': 'index',
 			'projects': 'index',
 			'projects/:id': 'overview',
-			'tasks': 'tasks',
-			'users': 'users',
-			'settings': 'settings',
-			'build': 'build'
+			'projects/:id/tasks': 'tasks',
+			'projects/:id/users': 'users',
+			'projects/:id/settings': 'settings',
+			'projects/:id/build': 'build'
 		},
 
 		index: function()
 		{
-			var Index = new Cily.View.Index({
+			Cily.Views.Index = new Cily.View.Index({
 				el: '.page-container'
 			});
 
-			Index.render();
+			Cily.Views.Index.render();
 		},
 
 		overview: function(id)
 		{
-			var Overview = new Cily.View.Overview({
+			console.log('overview')
+			Cily.Views.Overview = new Cily.View.Overview({
 				id: id,
 				el: '.page-container'
 			});
-			Overview.render();
+			// Overview.render();
 		},
 
 		tasks: function()
@@ -63,5 +68,12 @@ window.Cily.App = window.Cily.App || {};
 	});
 
 	Cily.Router = new Router();
-	Backbone.history.start({ pushState: true });
+	Backbone.history.start({ pushState: true, root: '/' });
+
+	$(document).on('click', "a[href^='/']", function(e) {
+		e.preventDefault()
+		
+		if(typeof $(this).data('notrigger') === 'undefined')
+			Cily.Router.navigate($(this).attr('href'), { trigger: true });
+	})
 })();

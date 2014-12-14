@@ -6,6 +6,6 @@ window.Cily = window.Cily || {
 
 var _setHeaders = function(xhr)
 {
-	xhr.setRequestHeader('X-Cily-UID', Cily.Config.AuthData.id);
-	xhr.setRequestHeader('X-Cily-Token', Cily.Config.AuthData.token);
+	xhr.setRequestHeader('X-Cily-UID', $.cookie('uid'));
+	xhr.setRequestHeader('X-Cily-Token', $.cookie('token'));
 };
