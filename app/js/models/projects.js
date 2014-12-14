@@ -11,6 +11,11 @@ Cily.Model = Cily.Model || {};
 			// 
 		},
 
+		parse: function(response)
+		{
+			return response.data || response;
+		},
+
 		url: function()
 		{
 			return Cily.Config.API + 'projects/' + this.id;
@@ -21,10 +26,11 @@ Cily.Model = Cily.Model || {};
 	Cily.Model.Projects = Backbone.Collection.extend({
 
 		model: Cily.Model.Project,
+		uid: null,
 
 		initialize: function(options)
 		{
-			// 
+
 		},
 
 		parse: function(response)
@@ -34,7 +40,7 @@ Cily.Model = Cily.Model || {};
 
 		url: function()
 		{
-			return Cily.Config.API + 'users/' + Cily.Config.AuthData.id + '/projects';
+			return Cily.Config.API + 'users/' + Cily.App.Data.User.id + '/projects';
 		}
 
 	});
