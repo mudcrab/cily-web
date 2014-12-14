@@ -6,15 +6,15 @@ Cily.View = Cily.View || {};
 
 		events: {},
 		template: Tpl.main.index,
-		projects: {},
 
 		initialize: function(options) 
 		{
 			var self = this;
+			Cily.App.Data = Cily.App.Data || {};
 
-			this.projects = new Cily.Model.Projects();
+			Cily.App.Data.Projects = new Cily.Model.Projects();
 
-			this.listenTo(this.projects, 'reset', this.populateProjects);
+			this.listenTo(Cily.App.Data.Projects, 'reset', this.populateProjects);
 
 			$.ajax({
 				url: 'http://localhost:3000/users/auth',
@@ -28,11 +28,15 @@ Cily.View = Cily.View || {};
 			.done(function(data) {
 				if(data.status)
 				{
-					Cily.Config.AuthData = {
+					Cily.App.Data.User = {
 						id: data.id,
 						token: data.token
 					};
-					self.projects.fetch({ beforeSend: _setHeaders, reset: true });
+
+					$.cookie('uid', data.id);
+					$.cookie('token', data.token);
+
+					Cily.App.Data.Projects.fetch({ beforeSend: _setHeaders, reset: true });
 				}
 			});
 		},
@@ -40,7 +44,8 @@ Cily.View = Cily.View || {};
 		populateProjects: function()
 		{
 			var items = [];
-			this.projects.each(function(project) {
+			
+			Cily.App.Data.Projects.each(function(project) {
 				items.push(Tpl.overview.project(project.toJSON()));
 			});
 
@@ -49,7 +54,7 @@ Cily.View = Cily.View || {};
 
 		render: function() 
 		{
-			this.$el.html(this.template())
+			this.$el.html(this.template());
 			return this;
 		}
 
