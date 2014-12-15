@@ -1,0 +1,55 @@
+<ul id="settings">
+	<li class="grid settings overview-project-info--item">
+		<div class="col-12">
+			<div class="label bold">Project name</div>
+			<div>
+				<input class="input settings--project-name" type="text" value="{{ name }}">
+			</div>
+		</div>
+	</li>
+	<li class="grid settings overview-project-info--item">
+		<div class="col-12">
+			<div class="label bold">Repository address</div>
+			<div>
+				<input class="input setting--project-repo-address" type="text" value={{ repo_address }}>
+			</div>
+		</div>
+	</li>
+	<li class="grid settings overview-project-info--item">
+		<div class="col-12">
+			<div class="label bold">Repo type</div>
+			<div>
+				<select class="dropdown up setting--project-repo-type">
+					{{#select repo_type}}
+					<option value=""></option>
+					<option value="git">git</option>
+					<option value="svn">svn</option>
+					<option value="hg">mercurial</option>
+					{{/select}}
+				</select>
+			</div>
+		</div>
+	</li>
+	<li class="grid settings overview-project-info--item">
+		<div class="col-12">
+			<div class="label bold">Branch</div>
+			<div>
+				<input class="input setting--project-repo-branch" type="text" value={{ repo_branch }}>
+			</div>
+		</div>
+	</li>
+	<li class="grid settings overview-project-info--item">
+		<div class="col-11">
+			<div class="label bold">Token</div>
+			<div>
+				<input class="input setting--project-token" type="text" value={{ token }}>
+			</div>
+		</div>
+		<div class="col-1">
+			<div class="label"></div>
+			<div class="a-center setting--generate-token">
+				<i class="ion-refresh"></i>
+			</div>
+		</div>
+	</li>
+</ul>

@@ -1,3 +1,4 @@
+@import url(http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css);
 @import "config";
 
 // FIXME move this to cinder
@@ -256,4 +257,50 @@ li.overview-project-builds--item {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+#settings {
+	list-style: none;
+	padding: 0;
+	margin: 10px;
+}
+
+li.grid.settings {
+	max-width: 640px;
+	margin: auto;
+	border-bottom: 1px solid rgba(#000, .1);
+
+	&:first-of-type {
+		.label {
+			margin-top: 0;
+		}
+	}
+
+	&:last-of-type {
+		border: none;
+	}
+
+	.label {
+		margin: 10px 0;
+		min-height: 18px;
+	}
+
+	input.input, select.dropdown {
+		width: calc(100% - 10px);
+		background: rgba(#000, .1);
+	}
+
+	select.dropdown {
+		width: 100%;
+
+		option {
+			color: #000;
+		}
+	}
+}
+
+// FIXME
+
+.a-center {
+	text-align: center;
 }
