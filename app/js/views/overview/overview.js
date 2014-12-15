@@ -28,10 +28,6 @@ Cily.View = Cily.View || {};
 			this.builds.fetch({ beforeSend: _setHeaders, reset: true });
 
 			Cily.App.Data.Header.set('projectId', this.project.get('id'));
-
-			setInterval(function() {
-				self.builds.fetch({ beforeSend: _setHeaders, reset: true });
-			}, 5000);
 		},
 
 		renderBuilds: function(data)
