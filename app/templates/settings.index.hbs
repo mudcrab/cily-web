@@ -11,7 +11,7 @@
 		<div class="col-12">
 			<div class="label bold">Repository address</div>
 			<div>
-				<input class="input setting--project-repo-address" type="text" value={{ repo_address }}>
+				<input class="input settings--project-repo_address" type="text" value={{ repo_address }}>
 			</div>
 		</div>
 	</li>
@@ -19,7 +19,7 @@
 		<div class="col-12">
 			<div class="label bold">Repo type</div>
 			<div>
-				<select class="dropdown up setting--project-repo-type">
+				<select class="dropdown up settings--project-repo_type">
 					{{#select repo_type}}
 					<option value=""></option>
 					<option value="git">git</option>
@@ -34,7 +34,7 @@
 		<div class="col-12">
 			<div class="label bold">Branch</div>
 			<div>
-				<input class="input setting--project-repo-branch" type="text" value={{ repo_branch }}>
+				<input class="input settings--project-repo_branch" type="text" value={{ repo_branch }}>
 			</div>
 		</div>
 	</li>
@@ -42,14 +42,19 @@
 		<div class="col-11">
 			<div class="label bold">Token</div>
 			<div>
-				<input class="input setting--project-token" type="text" value={{ token }}>
+				<input class="input" readonly="readonly" type="text" value={{ token }}>
 			</div>
 		</div>
 		<div class="col-1">
 			<div class="label"></div>
-			<div class="a-center setting--generate-token">
+			<div class="a-center js--generate-token">
 				<i class="ion-refresh"></i>
 			</div>
 		</div>
 	</li>
 </ul>
+<div class="grid settings-actions">
+	<div class="grid-4 center">
+		<button class="button up bold js--save-settings">save</button>
+	</div>
+</div>

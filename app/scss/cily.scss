@@ -210,7 +210,7 @@ li.overview-project-builds--item {
 
 .overview-projects {
 	list-style: none;
-	margin: 10px;
+	margin: 10px auto;
 	padding: 0;
 }
 
@@ -263,6 +263,25 @@ li.overview-project-builds--item {
 	list-style: none;
 	padding: 0;
 	margin: 10px;
+}
+
+.settings-actions {
+	margin: auto;
+	max-width: 640px;
+	text-align: center;
+
+	& > .grid-4 {
+		text-align: center;
+	}
+
+	.button {
+		font-size: em(14);
+		background: #2ecc71;
+		border: none;
+		margin: 10px;
+		padding: 5px 14px;
+		min-width: 100px;
+	}
 }
 
 li.grid.settings {

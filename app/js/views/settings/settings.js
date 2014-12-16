@@ -4,7 +4,11 @@ Cily.View = Cily.View || {};
 (function($) {
 	Cily.View.Settings = Backbone.View.extend({
 
-		events: {},
+		events: {
+			'click .js--save-settings': 'saveSettings',
+			'click .js--generate-token': 'generateToken'
+		},
+
 		template: Tpl.settings.index,
 		settings: {},
 		model: null,
@@ -15,6 +19,28 @@ Cily.View = Cily.View || {};
 			this.listenTo(this.model, 'change', this.render);
 
 			this.model.fetch({ beforeSend: _setHeaders, reset: true });
+		},
+
+		saveSettings: function()
+		{
+			var data = {};
+
+			this.$('#settings')
+			.find("[class*='settings--project-']")
+			.each(function() {
+				var key = $(this).attr('class').match(/settings--project-(.*)/)[1];
+				data[key] = $(this).val();
+			});
+
+			this.model.set(data)
+			.save(data, {
+				beforeSend: _setHeaders
+			});
+		},
+
+		generateToken: function()
+		{
+			// 
 		},
 
 		render: function() 
