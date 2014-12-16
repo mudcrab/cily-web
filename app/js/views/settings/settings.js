@@ -33,7 +33,7 @@ Cily.View = Cily.View || {};
 			});
 
 			this.model.set(data)
-			.save(data, {
+			.save(null, {
 				beforeSend: _setHeaders
 			});
 		},
