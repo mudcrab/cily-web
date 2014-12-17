@@ -13,7 +13,7 @@ Cily.View = Cily.View || {};
 			var self = this;
 
 			if(typeof Cily.App.Data.Projects == 'undefined' || !Cily.App.Data.Projects.get(this.id))
-				this.project = new Cily.Model.Project({ id: 1 });
+				this.project = new Cily.Model.Project({ id: this.id });
 			else
 			{
 				this.project = Cily.App.Data.Projects.get(this.id);
