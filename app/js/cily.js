@@ -19,6 +19,7 @@ window.Cily.Views = window.Cily.Views || {};
 		{
 			'': 'index',
 			'projects': 'index',
+			'projects/new': 'newProject',
 			'projects/:id': 'overview',
 			'projects/:id/tasks': 'tasks',
 			'projects/:id/users': 'users',
@@ -33,6 +34,15 @@ window.Cily.Views = window.Cily.Views || {};
 			});
 
 			Cily.Views.Index.render();
+		},
+
+		newProject: function()
+		{
+			Cily.Views.NewProject = Cily.Views.Settings || new Cily.View.Settings({
+				el: '.page-container'
+			});
+
+			Cily.Views.NewProject.render();
 		},
 
 		overview: function(id)

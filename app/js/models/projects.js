@@ -18,7 +18,10 @@ Cily.Model = Cily.Model || {};
 
 		url: function()
 		{
-			return Cily.Config.API + 'projects/' + this.id;
+			if(typeof this.id !== 'undefined')
+				return Cily.Config.API + 'projects/' + this.id;
+			else
+				return Cily.Config.API + 'projects';
 		}
 
 	});
@@ -40,7 +43,7 @@ Cily.Model = Cily.Model || {};
 
 		url: function()
 		{
-			return Cily.Config.API + 'users/' + Cily.App.Data.User.id + '/projects';
+			return Cily.Config.API + 'users/projects';
 		}
 
 	});

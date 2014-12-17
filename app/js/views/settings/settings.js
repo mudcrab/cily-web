@@ -15,10 +15,16 @@ Cily.View = Cily.View || {};
 
 		initialize: function(options) 
 		{
-			this.model = new Cily.Model.Project({ id: options.projectId });
-			this.listenTo(this.model, 'change', this.render);
+			var modelData = {};
+			if(typeof options.projectId !== 'undefined')
+				modelData = { id: options.projectId };
 
-			this.model.fetch({ beforeSend: _setHeaders, reset: true });
+			this.model = new Cily.Model.Project(modelData);
+			this.listenTo(this.model, 'change', this.render);
+			// this.listenTo(this.model, 'sync', this.render);
+
+			if(typeof options.projectId !== 'undefined')
+				this.model.fetch({ beforeSend: _setHeaders, reset: true });
 		},
 
 		saveSettings: function()
