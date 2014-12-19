@@ -34,6 +34,7 @@ window.Cily.Views = window.Cily.Views || {};
 			});
 
 			Cily.Views.Index.render();
+			Cily.App.Data.Header.set('projectId', null);
 		},
 
 		newProject: function()

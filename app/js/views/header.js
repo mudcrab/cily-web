@@ -27,19 +27,40 @@ Cily.View = Cily.View || {};
 			var self = this;
 
 			Cily.App.Data.Header = new Cily.Model.Header();
-			this.listenTo(Cily.App.Data.Header, 'change', this.setLinks);
+			// this.listenTo(Cily.App.Data.Header, 'change', this.setProjectLinks);
+
+			Cily.App.Data.Header.on('change:projectTitle', function(model, title) {
+				self.$('.project-title').text(title);
+			});
+
+			Cily.App.Data.Header.on('change:projectId', function(model, id) {
+				if(id)
+				{
+					self.setProjectLinks(id);
+					self.toggleMenu();
+				}
+				else
+				{
+					self.toggleMenu();
+				}
+			});
 		},
 
-		setLinks: function(pid)
+		setProjectLinks: function(pid)
 		{
 			var self = this;
 			if(Cily.App.Data.Header.hasChanged('projectId'))
 			{
-				this.$el.find('.menu-list li').each(function() {
+				this.$el.find('.project-menu li').each(function() {
 					$(this).parent()
 					.attr('href', self.links[$(this).text().toLowerCase()].replace(':pid', Cily.App.Data.Header.get('projectId')));
 				});
 			}
+		},
+
+		toggleMenu: function()
+		{
+			self.$('.index-menu, .project-menu').toggle();
 		},
 
 		buildProject: function(e)

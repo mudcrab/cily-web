@@ -5,7 +5,8 @@ Cily.Model = Cily.Model || {};
 	Cily.Model.Header = Backbone.Model.extend({
 
 		defaults: {
-			projectId: null
+			projectId: null,
+			projectTitle: null
 		},
 
 		initialize: function(options) 
