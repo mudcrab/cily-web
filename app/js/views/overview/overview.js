@@ -26,8 +26,6 @@ Cily.View = Cily.View || {};
 			this.builds = new Cily.Model.Builds({ project_id: this.project.get('id') });
 			this.listenTo(this.builds, 'reset', this.renderBuilds);
 			this.builds.fetch({ beforeSend: _setHeaders, reset: true });
-
-			Cily.App.Data.Header.set('projectId', this.project.get('id'));
 		},
 
 		renderBuilds: function(data)

@@ -49,7 +49,7 @@ window.Cily.Views = window.Cily.Views || {};
 		overview: function(id)
 		{
 			Cily.App.Data.Header.set('projectId', id);
-			Cily.Views.Overview = new Cily.View.Overview({
+			Cily.Views.Overview =  new Cily.View.Overview({
 				id: id,
 				el: '.page-container'
 			});

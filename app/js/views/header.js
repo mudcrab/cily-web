@@ -15,8 +15,8 @@ Cily.View = Cily.View || {};
 		template: Tpl.header,
 
 		links: {
-			build: '/projects/:pid/build',
 			overview: '/projects/:pid',
+			build: '/projects/:pid/build',
 			tasks: '/projects/:pid/tasks',
 			users: '/projects/:pid/users',
 			settings: '/projects/:pid/settings'
@@ -37,11 +37,12 @@ Cily.View = Cily.View || {};
 				if(id)
 				{
 					self.setProjectLinks(id);
-					self.toggleMenu();
+					self.toggleMenu('project', 'index');
 				}
 				else
 				{
-					self.toggleMenu();
+					self.$('.project-title').text('Projects');
+					self.toggleMenu('index', 'project');
 				}
 			});
 		},
@@ -58,9 +59,10 @@ Cily.View = Cily.View || {};
 			}
 		},
 
-		toggleMenu: function()
+		toggleMenu: function(to, from)
 		{
-			self.$('.index-menu, .project-menu').toggle();
+			self.$('.' + to + '-menu').show();
+			self.$('.' + from + '-menu').hide();
 		},
 
 		buildProject: function(e)
