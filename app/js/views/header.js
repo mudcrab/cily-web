@@ -9,7 +9,8 @@ Cily.View = Cily.View || {};
 		intervalId: 0,
 
 		events: {
-			'click .build': 'buildProject'
+			'click .build': 'buildProject',
+			'click a': 'setActive'
 		},
 
 		template: Tpl.header,
@@ -27,7 +28,6 @@ Cily.View = Cily.View || {};
 			var self = this;
 
 			Cily.App.Data.Header = new Cily.Model.Header();
-			// this.listenTo(Cily.App.Data.Header, 'change', this.setProjectLinks);
 
 			Cily.App.Data.Header.on('change:projectTitle', function(model, title) {
 				self.$('.project-title').text(title);
@@ -63,6 +63,14 @@ Cily.View = Cily.View || {};
 		{
 			self.$('.' + to + '-menu').show();
 			self.$('.' + from + '-menu').hide();
+		},
+
+		setActive: function(e)
+		{
+			var el = $(e.currentTarget) || e;
+
+			el.parent().find('li.active').removeClass('active');
+			el.find('li').addClass('active');
 		},
 
 		buildProject: function(e)
