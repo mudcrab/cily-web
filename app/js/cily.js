@@ -18,6 +18,7 @@ window.Cily.Views = window.Cily.Views || {};
 		routes:
 		{
 			'': 'index',
+			'logout': 'logout',
 			'projects': 'index',
 			'projects/new': 'newProject',
 			'projects/:id': 'overview',
@@ -35,6 +36,14 @@ window.Cily.Views = window.Cily.Views || {};
 
 			Cily.Views.Index.render();
 			Cily.App.Data.Header.set('projectId', null);
+		},
+
+		logout: function()
+		{
+			$.cookie('uid', '');
+			$.cookie('token', '');
+
+			this.navigate('/', { trigger: true });
 		},
 
 		newProject: function()
@@ -63,6 +72,8 @@ window.Cily.Views = window.Cily.Views || {};
 				projectId: id,
 				el: '.page-container'
 			});
+
+			Cily.Views.Tasks.render();
 		},
 
 		users: function(id)
