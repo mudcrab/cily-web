@@ -16,29 +16,19 @@ Cily.View = Cily.View || {};
 
 			this.listenTo(Cily.App.Data.Projects, 'reset', this.populateProjects);
 
-			$.ajax({
-				url: 'http://localhost:3000/users/auth',
-				type: 'POST',
-				data: JSON.stringify({
-					user: 'jevgeni@pitfire.eu',
-					pw: 'asdf1234'
-				}),
-				contentType: 'application/json'
-			})
-			.done(function(data) {
-				if(data.status)
-				{
-					Cily.App.Data.User = {
-						id: data.id,
-						token: data.token
-					};
+			if($.cookie('uid') === '' || typeof $.cookie('uid') === 'undefined' 
+				|| $.cookie('token') === '' || typeof $.cookie('token') === 'undefined')
+			{
+				var loginView = new Cily.View.Login({
+					el: 'body'
+				});
 
-					$.cookie('uid', data.id);
-					$.cookie('token', data.token);
-
-					Cily.App.Data.Projects.fetch({ beforeSend: _setHeaders, reset: true });
-				}
-			});
+				loginView.render();
+			}
+			else
+			{
+				Cily.App.Data.Projects.fetch({ beforeSend: _setHeaders, reset: true });
+			}
 		},
 
 		populateProjects: function()
