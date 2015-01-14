@@ -1,15 +1,24 @@
-<section class="left-pane col-6">
-	<h1 class="project-title">Projects</h1>
+<section class="header--title row">
+	<div class="col-1-fluid header--action project-menu js-go-back">
+		<i class="ion-chevron-left"></i>
+	</div>
+	<div class="col-1-fluid header--action index-menu"></div>
+	<div class="col-10-fluid cf">
+		<h1 class="header--project-title semibold project-title">Projects</h1>
+	</div>
+	<div class="col-1-fluid header--action js-project-settings">
+		<span class="project-action project-menu js-build">
+			<a data-notrigger="true" href=""><i class="ion-erlenmeyer-flask"></i></a>
+		</span>
+		<a href="/projects/new"><i class="ion-plus-circled index-menu"></i></a>
+	</div>
 </section>
-<section class="right-pane col-6">
-	<ul class="menu-list index-menu cf up bold">
-		<a href="/projects/new"><li class="project-menu-item right js-settings">Add new project</li></a>
-	</ul>
-	<ul class="menu-list project-menu cf up">
-		<a href=""><li class="project-menu-item right js-settings">Settings</li></a>
-		<a href=""><li class="project-menu-item right js-users">Users</li></a>
-		<a href=""><li class="project-menu-item right js-tasks">Tasks</li></a>
-		<a href=""><li class="project-menu-item right js-overview">Overview</li></a>
-		<a data-notrigger="true" href=""><li class="project-menu-item right build js-build">BUILD</li></a>
-	</ul>
+
+<section class="header--navigation project-menu row">
+	<div class="col-12 up bold">
+		<span class="header--nav-item js-overview"><a href="">Overview</a></span>
+		<span class="header--nav-item js-tasks"><a href="">Tasks</a></span>
+		<span class="header--nav-item js-users"><a href="">Users</a></span>
+		<span class="header--nav-item js-settings"><a href="">Settings</a></span>
+	</div>
 </section>

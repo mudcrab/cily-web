@@ -6,7 +6,8 @@ Cily.Model = Cily.Model || {};
 
 		defaults: {
 			projectId: null,
-			projectTitle: null
+			projectTitle: null,
+			projectToken: null
 		},
 
 		initialize: function(options) 

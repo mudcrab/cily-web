@@ -5,12 +5,13 @@ Cily.View = Cily.View || {};
 	Cily.View.Header = Backbone.View.extend({
 
 		tagName: 'header',
-		className: 'grid header',
+		className: 'header cf',
 		intervalId: 0,
 
 		events: {
-			'click .build': 'buildProject',
-			'click a': 'setActive'
+			'click .js-build a': 'buildProject',
+			'click a': 'setActive',
+			'click .js-go-back': 'goBack'
 		},
 
 		template: Tpl.header,
@@ -28,6 +29,7 @@ Cily.View = Cily.View || {};
 			var self = this;
 
 			Cily.App.Data.Header = new Cily.Model.Header();
+			self.toggleMenu('index', 'project');
 
 			Cily.App.Data.Header.on('change:projectTitle', function(model, title) {
 				self.$('.project-title').text(title);
@@ -52,9 +54,13 @@ Cily.View = Cily.View || {};
 			var self = this;
 			if(Cily.App.Data.Header.hasChanged('projectId'))
 			{
-				this.$el.find('.project-menu li').each(function() {
-					$(this).parent()
-					.attr('href', self.links[$(this).text().toLowerCase()].replace(':pid', Cily.App.Data.Header.get('projectId')));
+				this.$el.find('.project-menu .header--nav-item, .project-action').each(function() {
+					var linkId = self.links[$(this).attr('class')
+								.substring($(this).attr('class').match(/js-/).index)
+								.replace('js-', '')];
+					$(this)
+					.find('a')
+					.attr('href', linkId.replace(':pid', Cily.App.Data.Header.get('projectId')));
 				});
 			}
 		},
@@ -76,9 +82,9 @@ Cily.View = Cily.View || {};
 		buildProject: function(e)
 		{
 			e.preventDefault();
-			
+
 			$.ajax({
-				url: 'http://localhost:3000/projects/' + Cily.App.Data.Header.get('projectId') + '/123456/build',
+				url: Cily.Config.API + 'projects/' + Cily.App.Data.Header.get('projectId') + '/' + Cily.App.Data.Header.get('projectToken') + '/build',
 				type: 'GET',
 				contentType: 'application/json',
 				beforeSend: _setHeaders
@@ -86,6 +92,11 @@ Cily.View = Cily.View || {};
 			.done(function(data) {
 				console.log(data);
 			});
+		},
+
+		goBack: function(e)
+		{
+			window.history.go(-1);
 		},
 
 		render: function() 
