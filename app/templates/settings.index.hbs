@@ -1,4 +1,58 @@
-<ul id="settings">
+<section id="settings" class="row">
+	<div class="col-12">
+		<form action="" class="gridform">
+			<section class="row">
+				<fieldset class="gridform--container col-12 nb--top nb--left nb--right">
+					<label for="project-name" class="label">Project name</label>
+					<input id="project-name" class="input settings--project-name" type="text" value="{{ name }}">
+				</fieldset>
+			</section>
+
+			<section class="row">
+				<fieldset class="gridform--container col-12 nb--top nb--left nb--right">
+					<label for="project-address" class="label">Project name</label>
+					<input id="project-address" class="input settings--project-repo_address" type="text" value={{ repo_address }}>
+				</fieldset>
+			</section>
+
+			<section class="row">
+				<fieldset class="gridform--container col-6 nb--top nb--left nb--right">
+					<label for="repo-type" class="label">Repo type</label>
+					<select class="dropdown up settings--project-repo_type">
+						{{#select repo_type}}
+						<option value=""></option>
+						<option value="git">git</option>
+						<option value="svn">svn</option>
+						<option value="hg">mercurial</option>
+						{{/select}}
+					</select>
+				</fieldset>
+				<fieldset class="gridform--container col-6 nb--top nb--left nb--right">
+					<label for="repo-branch" class="label">Branch</label>
+					<input id="repo-branch" class="input settings--project-repo_branch" type="text" value={{ repo_branch }}>
+				</fieldset>
+			</section>
+
+			<section class="row">
+				<fieldset class="gridform--container col-11 nb--top nb--left nb--right">
+					<label for="token" class="label">Token</label>
+					<input id="token" class="input" readonly="readonly" type="text" value={{ token }}>
+				</fieldset>
+				<fieldset class="gridform--container col-1 nb--top nb--left nb--right">
+					<label for="generate-token" class="label"> </label>
+					<div id="generate-token">
+						<i class="ion-refresh"></i>
+					</div>
+				</fieldset>
+			</section>
+
+			<section class="row">
+				<button class="button up bold login--button js--save-settings">Save</button>
+			</section>
+		</form>
+	</div>
+</section>
+{{!-- <ul id="settings">
 	<li class="grid settings overview-project-info--item">
 		<div class="col-12">
 			<div class="label bold">Project name</div>
@@ -57,4 +111,4 @@
 	<div class="grid-4 center">
 		<button class="button up bold js--save-settings">save</button>
 	</div>
-</div>
+</div> --}}

@@ -6,7 +6,7 @@ Cily.View = Cily.View || {};
 
 		events: {
 			'click .js--save-settings': 'saveSettings',
-			'click .js--generate-token': 'generateToken'
+			'click #generate-token': 'generateToken'
 		},
 
 		template: Tpl.settings.index,
@@ -46,7 +46,17 @@ Cily.View = Cily.View || {};
 
 		generateToken: function()
 		{
-			// 
+			var self = this;
+
+			$.ajax({
+				url: Cily.Config.API + 'project/' + Cily.App.Data.Header.get('projectId') + '/maketoken',
+				type: 'POST',
+				contentType: 'application/json',
+				beforeSend: _setHeaders
+			})
+			.done(function(data) {
+				self.model.fetch({ beforeSend: _setHeaders, reset: true });
+			});
 		},
 
 		render: function() 
