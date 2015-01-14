@@ -11,21 +11,41 @@
 	transform: translate3d($x, $y, 0);
 }
 
-::-webkit-scrollbar{width: 6px;}
+@mixin setCenter($width, $topBottom, $leftRight, $sides) {
+	margin: $topBottom auto;
+
+	@include maxMQ($width) {
+		margin: $topBottom $leftRight;
+		width: calc(100% - #{$sides});
+	}
+
+	@content;
+}
+
+/* ::-webkit-scrollbar{width: 6px;}
 
 ::-webkit-scrollbar-thumb{background-color:rgb(0, 0, 0); border-radius: 0;}
 ::-webkit-scrollbar-thumb:hover{background-color:rgba(0, 0, 0, .3);}
 
-::-webkit-scrollbar-track{background-color:rgb(31, 31, 31);}
+::-webkit-scrollbar-track{background-color:rgb(31, 31, 31);} */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 html, body, .full-container {
 	width: 100%;
 	height: 100%;
+	overflow-x: hidden;
 }
 
 body {
-	background: rgba(#000, .8);
-	color: #f3f3f3;
+	background: #f3f3f3;
+	// color: #f3f3f3;
+	color: $cily-dark;
 }
 
 .full-container {
@@ -43,16 +63,132 @@ body {
 
 .page-container {
 	width: 100%;
-	height: calc(100% - 54px);
+	// height: calc(100% - 54px);
 }
 
 .header, .main {
 	margin: auto;
 }
 
+.header {
+	color: #fff;
+
+	&:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 1px;
+		box-shadow: 0 2px 3px rgba($cily-dark, 1);
+		margin-top: -1px;
+	}
+
+	a, a:visited { color: #fff; }
+}
+
+i[class*='ion-'] {
+	font-size: 24px;
+}
+
 // HEADER
 
-.header {
+section.header--title {
+	background: $cily-bgr-dark;
+	max-width: 100%;
+}
+
+section.header--navigation {
+	background: #607D8B;
+	max-width: 100%;
+	text-align: center;
+	padding: 10px 0;
+	font-size: em(14);
+}
+
+h1.header--project-title {
+	padding: 5px 10px;
+	margin: 10px 0;
+	font-size: em(24);
+	text-align: center;
+}
+
+.header--nav-item {
+	padding: 0 10px;
+
+	a, a:active, a:visited {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: rgba(#fff, .8);
+	}
+}
+
+
+
+.header--action {
+	padding: 16px 0;
+
+	&:hover {
+		color: rgba(#fff, .7);
+	}
+
+	i {
+		padding: 0 15px;
+	}
+}
+
+.header--project-settings {
+	text-align: right;
+}
+
+.project-info--holder {
+	max-width: 100%;
+	background: #fff;
+	// background: rgba(#607D8B, .7);
+
+	div.sep {
+		border-bottom: 1px solid #ccc;
+	}
+}
+
+.project--info {
+	margin: auto;
+	font-size: em(12);
+	padding: 0 10px 10px 10px;
+}
+
+.repo-git {
+	color: #f14e32;
+}
+
+.repo-svn {
+	color: rgb(147,176,218);
+}
+
+.repo-hg {
+	color: #999;
+}
+
+// FIXME
+
+.successful-builds {
+	color: #2ecc71;
+}
+
+.failed-builds {
+	color: #c0392b;
+}
+
+.project--info-header {
+	margin: auto;
+	font-size: em(10);
+	padding: 10px 10px 0 10px; 
+}
+
+/*.header {
+	background: rgba(#000, .9);
+	border-bottom: 1px solid #fff;
 	// padding: 10px 0;
 	line-height: 1;
 
@@ -106,37 +242,55 @@ li.project-menu-item {
 	&.build {
 		color: #c0392b;
 	}
+} */
+
+.project-menu {
+	display: none;
 }
 
 // MAIN
 
 .overview-project-builds {
 	list-style: none;
-	margin: 0 10px;
+	@include setCenter(1000px, 10px, 10px, 20px);
 	padding: 0;
+	border: 1px solid rgba(#ccc, .6);
+	background: #fff;
 }
 
 li.item {
 	cursor: pointer;
-	@include anim(background, 200ms, ease-out);
+	// @include anim(background, 200ms, ease-out);
 
 	&:hover {
-		@include anim(background, 200ms, ease-in);
+		// @include anim(background, 200ms, ease-in);
 	}
 
 	&:active {
-		@include anim(background, 300ms, ease-out);
+		// @include anim(background, 300ms, ease-out);
 	}
 }
 
 li.overview-project-builds--item {
 	@include lineheight(40);
-	background: rgba(#000, .1);
-	border-radius: 3px;
-	margin: 5px 0;
+	// background: rgba(#000, .1);
+	// border-radius: 3px;
+	// margin: 5px 0;
+	// border-bottom: 1px solid #eee;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+
+	&:first-of-type {
+		border-top: none;
+	}
+
+	&:last-of-type {
+		border-bottom: none;
+	}
 
 	&:hover {
-		background: rgba(#000, .2);
+		background: #f3f3f3;
+		border-color: rgba(#ccc, .6);
 	}
 
 	&:active {
@@ -159,13 +313,14 @@ li.overview-project-builds--item {
 .overview-project-builds--status {
 	width: 40px;
 	height: 40px;
-	border-radius: 3px;
+	// border-radius: 3px;
 	text-align: center;
 
 	&.__1, &.__success {
-		background: #2ecc71;
+		// background: #2ecc71;
 
 		i {
+			color: #2ecc71;
 			&:before {
 				content: "\f00c";
 			}
@@ -173,51 +328,14 @@ li.overview-project-builds--item {
 	}
 
 	&.__, &.__0, &.__fail {
-		background: #c0392b;
+		// background: #c0392b;
 
 		i {
+			color: #c0392b;
 			&:before {
 				content: "\f00d";
 			}
 		}
-	}
-}
-
-// OVERVIEW
-
-.overview-project-info {
-	list-style: none;
-	margin: 0 10px;
-	padding: 0;
-
-	.successful-builds {
-		color: #2ecc71;
-	}
-
-	.failed-builds {
-		color: #c0392b;
-	}
-}
-
-.overview-project-info--item {
-	margin: 10px 0;
-
-	&:first-of-type {
-		margin-top: 3px;
-	}
-
-	.label, .text {
-		margin: 0;
-		padding: 0;
-	}
-
-	.label {
-		font-size: em(12);
-	}
-
-	.text {
-		font-size: em(16);
-		font-weight: 700;
 	}
 }
 
@@ -275,7 +393,17 @@ li.overview-project-builds--item {
 #settings {
 	list-style: none;
 	padding: 0;
-	margin: 10px;
+	margin: 10px auto;
+	max-width: 640px;
+
+	.label {
+		padding: 10px;
+	}
+}
+
+#generate-token {
+	text-align: center;
+	i { font-size: 20px; }
 }
 
 .settings-actions {
@@ -331,7 +459,111 @@ li.grid.settings {
 	}
 }
 
+ul#tasks {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.task-list-item {
+	margin: auto;
+}
+
 // FIXME
+
+form.gridform {
+	input.input {
+		width: calc(100% - 12px);
+		box-shadow: none;
+	}
+
+	select.dropdown {
+		width: 100%;
+		box-shadow: none;
+	}
+
+	fieldset {
+		border: 1px solid #ccc;
+	}
+
+	.label {
+		padding: 0 5px;
+	}
+}
+
+.button {
+	border: 1px solid #ccc;
+	background: #fff;
+	font-size: em(12);
+	padding: 5px 10px;
+}
+
+.gridform--container {
+	padding: 0;
+	margin: 10px 0 0;
+
+	&:hover {
+		border-color: #000;
+	}
+}
+
+#settings .gridform {
+	// 
+}
+
+.login-container {
+	background: #f3f3f3;
+}
+
+.login {
+	margin: auto;
+	max-width: 480px; 
+}
+
+.login--button {
+	width: 100%;
+	margin: 20px 0;
+	padding: 10px 10px;
+	background: #2ecc71;
+	border-color: #fff;
+	color: #fff;
+}
+
+.nb--top {
+	border-top: none !important;
+}
+
+.nb--right {
+	border-right: none !important;
+}
+
+.nb--bottom {
+	border-bottom: none !important;
+}
+
+.nb--left {
+	border-left: none !important;
+}
+
+.label {
+	font-size: em(12);
+}
+
+// dialog stuff
+
+.bgr-overlay {
+	position: fixed;
+	z-index: 9999999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* 
+	Helpers
+	FIXME
+*/
 
 .a-center {
 	text-align: center;

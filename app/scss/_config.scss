@@ -23,6 +23,7 @@ $cinder-line-height-small: 1.1;
 
 @import "../../node_modules/cinderblocks/app/scss/cinder/typography";
 @import "../../node_modules/cinderblocks/app/scss/cinder/grid";
+@import "../../node_modules/cinderblocks/app/scss/cinder/visibility";
 
 @import "../../node_modules/cinderblocks/app/scss/cinder/ui/dialog";
 @import "../../node_modules/cinderblocks/app/scss/cinder/ui/pane";
@@ -34,3 +35,13 @@ $cinder-line-height-small: 1.1;
 
 // 
 
+$cily-bgr-dark: #455A64;
+$cily-bgr-dark-a: #607D8B;
+
+$cily-action: #FF5722;
+
+$cily-light: #CFD8DC;
+$cily-dark: #212121;
+$cily-medium: #727272;
+
+$cily-border: #b6b6b6;
