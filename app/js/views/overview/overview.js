@@ -47,6 +47,7 @@ Cily.View = Cily.View || {};
 		render: function(project)
 		{
 			$('.project-title').text(this.project.toJSON().name);
+			Cily.App.Data.Header.set('projectToken', this.project.get('token'));
 			this.$el.html(this.template( this.project.toJSON() ));
 			return this;
 		}

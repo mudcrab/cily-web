@@ -1,35 +1,28 @@
-<section class="grid main">
-	<section class="left-pane col-8">
-		<ul class="overview-project-builds">
-		
-		</ul>
+<section class="project-info--holder">
+	<section class="row project--info-header up bold hide-xsmall">
+		<div class="col-1">Type</div>
+		<div class="col-7">Address</div>
+		<div class="col-2">Builds</div>
+		<div class="col-1">Tasks</div>
+		<div class="col-1">Branches</div>
 	</section>
-	<section class="right-pane col-4">
-		<ul class="overview-project-info">
-			<li class="overview-project-info--item">
-				<p class="label up">Type</p>
-				<p class="text">{{ repo_type }}</p>
-			</li>
-			<li class="overview-project-info--item">
-				<p class="label up">Repo</p>
-				<p class="text">{{ repo_address }}</p>
-			</li>
-			<li class="overview-project-info--item">
-				<p class="label up">Builds</p>
-				<p class="text">
-					<span class="all-builds">70</span> /
-					<span class="successful-builds">65</span> /
-					<span class="failed-builds">5</span>
-				</p>
-			</li>
-			<li class="overview-project-info--item">
-				<p class="label up">Tasks</p>
-				<p class="text">1</p>
-			</li>
-			<li class="overview-project-info--item">
-				<p class="label up">Branches</p>
-				<p class="text">2</p>
-			</li>
-		</ul>
+	<section class="row project--info">
+		<label class="label vis-xsmall bold up">Type</label>
+		<div class="col-1 up repo-{{ repo_type }}">{{ repo_type }}</div>
+		<label class="label vis-xsmall bold up">Address</label>
+		<div class="col-7">{{ repo_address }}</div>
+		<label class="label vis-xsmall bold up">Builds</label>
+		<div class="col-2">
+			<span class="all-builds">70</span> /
+			<span class="successful-builds">65</span> /
+			<span class="failed-builds">5</span>
+		</div>
+		<label class="label vis-xsmall bold up">Tasks</label>
+		<div class="col-1">1</div>
+		<label class="label vis-xsmall bold up">Branches</label>
+		<div class="col-1">2</div>
 	</section>
+	<div class="sep"></div>
 </section>
+
+<section class="overview-project-builds row center"></section>
